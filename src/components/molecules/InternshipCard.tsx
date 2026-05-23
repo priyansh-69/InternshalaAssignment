@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+
 import { Card, CardContent, CardFooter, CardHeader } from '@/components/atoms/card';
 import { Badge } from '@/components/atoms/badge';
 import { Button } from '@/components/atoms/button';
@@ -21,7 +21,7 @@ interface InternshipCardProps {
 }
 
 export function InternshipCard({ internship }: InternshipCardProps) {
-  const [imgError, setImgError] = useState(false);
+
 
   // Helper to get initials if company logo is missing or errors
   const getInitials = (name: string) => {
@@ -191,17 +191,9 @@ export function InternshipCard({ internship }: InternshipCardProps) {
           </div>
 
           {/* Dynamic Brand Logo / Initials Avatar */}
+          {/* We use our local premium dynamic generator to prevent Internshala CDN 403 Forbidden network errors! */}
           <div className="w-12 h-12 flex-shrink-0 rounded-xl overflow-hidden border border-gray-100 flex items-center justify-center bg-gray-50 shadow-inner">
-            {!imgError && internship.company_logo ? (
-              <img 
-                src={`https://internshala.com/cached_uploads/logos/${internship.company_logo}`} 
-                alt={internship.company_name} 
-                className="w-full h-full object-contain p-1.5"
-                onError={() => setImgError(true)}
-              />
-            ) : (
-              renderCompanyLogo()
-            )}
+            {renderCompanyLogo()}
           </div>
         </div>
       </CardHeader>
