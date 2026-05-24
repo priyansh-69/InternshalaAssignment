@@ -4,7 +4,7 @@ import { Card } from '@/components/atoms/card';
 export function LoadingSkeleton() {
   return (
     <div className="min-h-screen bg-[#F0F7FF] dark:bg-gray-950/20 py-8">
-      <div className="container mx-auto px-4 max-w-6xl">
+      <div className="container mx-auto px-4 max-w-[1200px]">
         {/* Header Skeleton */}
         <div className="mb-6 space-y-2">
           <Skeleton className="h-8 w-1/3 md:w-1/4 rounded-lg bg-gray-200 dark:bg-gray-800" />
