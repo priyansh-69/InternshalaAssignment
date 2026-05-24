@@ -1,7 +1,6 @@
 'use client';
 
-import { useState, useEffect } from 'react';
-import { createPortal } from 'react-dom';
+import { useState } from 'react';
 import { Card, CardContent, CardFooter, CardHeader } from '@/components/atoms/card';
 import { Badge } from '@/components/atoms/badge';
 import { Button } from '@/components/atoms/button';
@@ -13,12 +12,10 @@ import {
   IndianRupee, 
   Clock, 
   ArrowUpRight,
-  TrendingUp,
-  X,
-  Sparkles,
-  FileText
+  TrendingUp
 } from 'lucide-react';
 import { Separator } from '@/components/atoms/separator';
+import { InternshipDetailModal } from './InternshipDetailModal';
 
 interface InternshipCardProps {
   internship: Internship;
@@ -26,14 +23,6 @@ interface InternshipCardProps {
 
 export function InternshipCard({ internship }: InternshipCardProps) {
   const [isDetailOpen, setIsDetailOpen] = useState(false);
-  const [availability, setAvailability] = useState('Yes, I am available to join immediately');
-  const [commit6Months, setCommit6Months] = useState('Yes');
-  const [shiftComfortable, setShiftComfortable] = useState('Yes');
-  const [mounted, setMounted] = useState(false);
-
-  useEffect(() => {
-    setMounted(true);
-  }, []);
 
   const handleApplyClick = (e?: React.MouseEvent) => {
     if (e) {
@@ -339,248 +328,12 @@ export function InternshipCard({ internship }: InternshipCardProps) {
       </CardFooter>
 
       {/* Premium Detail Modal POPUP */}
-      {mounted && isDetailOpen && createPortal(
-        <div 
-          onClick={(e) => {
-            e.stopPropagation();
-            setIsDetailOpen(false);
-          }}
-          className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/60 backdrop-blur-sm transition-opacity duration-300 cursor-default"
-        >
-          <div 
-            onClick={(e) => e.stopPropagation()}
-            className="bg-white rounded-2xl max-w-4xl w-full shadow-2xl border border-gray-100 flex flex-col max-h-[90vh] overflow-hidden animate-in fade-in zoom-in-95 duration-200 cursor-default"
-            role="dialog"
-            aria-modal="true"
-          >
-            {/* Modal Sticky Header (Apply details banner) */}
-            <div className="px-6 py-4 bg-gray-50 border-b border-gray-100 flex justify-between items-center shrink-0">
-              <h2 className="text-sm font-bold text-gray-600 uppercase tracking-wider">
-                Applying to {internship.title} internship
-              </h2>
-              <button 
-                onClick={(e) => {
-                  e.stopPropagation();
-                  setIsDetailOpen(false);
-                }}
-                className="p-1.5 rounded-xl text-gray-400 hover:text-gray-900 hover:bg-gray-200 transition-colors"
-                aria-label="Close modal"
-              >
-                <X className="w-5 h-5" />
-              </button>
-            </div>
-
-            {/* Modal Scrollable Content */}
-            <div className="flex-1 overflow-y-auto px-8 py-6 space-y-6">
-              {/* Job Primary Card Detail Header */}
-              <div className="flex justify-between items-start gap-4 pb-6 border-b border-gray-100">
-                <div className="space-y-1">
-                  <h3 className="text-xl font-extrabold text-gray-900">
-                    {internship.title}
-                  </h3>
-                  <p className="text-sm font-semibold text-gray-500">
-                    {internship.company_name}
-                  </p>
-                  <div className="flex flex-wrap gap-2 pt-2">
-                    <Badge variant="secondary" className="bg-[#00A5EC]/10 text-[#00A5EC] font-bold border-none">
-                      Actively hiring
-                    </Badge>
-                    {internship.is_ppo && (
-                      <Badge variant="outline" className="border-emerald-200 bg-emerald-50 text-emerald-700 font-bold">
-                        With Job Offer (PPO)
-                      </Badge>
-                    )}
-                  </div>
-                </div>
-                <div className="w-12 h-12 flex-shrink-0 rounded-xl overflow-hidden border border-gray-100 flex items-center justify-center bg-gray-50 shadow-inner">
-                  {renderCompanyLogo()}
-                </div>
-              </div>
-
-              {/* Four-Column Key Metrics */}
-              <div className="grid grid-cols-2 md:grid-cols-4 gap-4 bg-gray-50/50 p-4 rounded-xl border border-gray-100/50 text-sm text-gray-600">
-                <div className="flex items-center space-x-2">
-                  <PlayCircle className="w-4.5 h-4.5 text-[#00A5EC] shrink-0" />
-                  <div className="flex flex-col">
-                    <span className="text-[10px] text-gray-400 uppercase tracking-wider font-bold">Start Date</span>
-                    <span className="font-bold text-gray-700">{internship.start_date}</span>
-                  </div>
-                </div>
-                <div className="flex items-center space-x-2">
-                  <Calendar className="w-4.5 h-4.5 text-[#00A5EC] shrink-0" />
-                  <div className="flex flex-col">
-                    <span className="text-[10px] text-gray-400 uppercase tracking-wider font-bold">Duration</span>
-                    <span className="font-bold text-gray-700">{internship.duration}</span>
-                  </div>
-                </div>
-                <div className="flex items-center space-x-2">
-                  <IndianRupee className="w-4.5 h-4.5 text-[#00A5EC] shrink-0" />
-                  <div className="flex flex-col">
-                    <span className="text-[10px] text-gray-400 uppercase tracking-wider font-bold">Stipend</span>
-                    <span className="font-bold text-gray-700">{internship.stipend.salary}</span>
-                  </div>
-                </div>
-                <div className="flex items-center space-x-2">
-                  <Clock className="w-4.5 h-4.5 text-[#00A5EC] shrink-0" />
-                  <div className="flex flex-col">
-                    <span className="text-[10px] text-gray-400 uppercase tracking-wider font-bold">Apply By</span>
-                    <span className="font-bold text-gray-700">
-                      {internship.application_deadline || internship.expiring_in || 'Apply Immediately'}
-                    </span>
-                  </div>
-                </div>
-              </div>
-
-              {/* About the internship section */}
-              <div className="space-y-3">
-                <div className="flex items-center gap-1.5">
-                  <h4 className="text-base font-bold text-gray-900">About the internship</h4>
-                  <Badge variant="outline" className="text-[10px] font-bold text-[#00A5EC] border-[#00A5EC]/30 bg-[#00A5EC]/5 flex items-center gap-0.5">
-                    <Sparkles className="w-2.5 h-2.5" /> Summarized by AI
-                  </Badge>
-                </div>
-                <div className="space-y-4 text-sm text-gray-600 leading-relaxed bg-sky-50/20 p-5 rounded-xl border border-sky-100/30">
-                  <div>
-                    <h5 className="font-bold text-gray-900 text-xs uppercase tracking-wider pb-1">Role Overview:</h5>
-                    <ul className="list-disc pl-4 space-y-1">
-                      <li>Deliver exceptional support and work closely with team leaders to execute day-to-day deliverables.</li>
-                      <li>Handle client requirements, document workflow items, and coordinate cross-functional milestones.</li>
-                      <li>Ensure strict adherence to quality assurance metrics and company operational key results (KPIs).</li>
-                    </ul>
-                  </div>
-
-                  <div>
-                    <h5 className="font-bold text-gray-900 text-xs uppercase tracking-wider pb-1">Requirements:</h5>
-                    <ul className="list-disc pl-4 space-y-1">
-                      <li>Undergraduate or graduate with relevant domain interest or 3-6 months equivalent academic/professional exposure.</li>
-                      <li>Vibrant problem-solving orientation, eager-to-learn attitude, and dynamic written/verbal expression.</li>
-                      <li>Required Skills: <span className="font-semibold text-gray-800">{internship.profile_name || 'Operations, Teamwork, Communication'}</span></li>
-                    </ul>
-                  </div>
-
-                  <div>
-                    <h5 className="font-bold text-gray-900 text-xs uppercase tracking-wider pb-1">Additional Information & Working Model:</h5>
-                    <ul className="list-disc pl-4 space-y-1">
-                      <li>Working Model: 6 days working (Rotational shifts).</li>
-                      <li>Female Shift Window: 7:00 AM – 7:00 PM (any 9-hour rotational block).</li>
-                      <li>Male Shift Window: 7:00 AM – 2:00 AM (any 9-hour block, including rotational night shifts).</li>
-                    </ul>
-                  </div>
-                </div>
-              </div>
-
-              {/* About the company section */}
-              <div className="space-y-2 pb-6 border-b border-gray-100">
-                <h4 className="text-base font-bold text-gray-900">About {internship.company_name}</h4>
-                <p className="text-sm text-gray-600 leading-relaxed">
-                  {internship.company_name} is a global tech & services leader assisting marquee corporate clients across worldwide consumer and enterprise markets.
-                </p>
-                <div className="bg-gray-50 p-3 rounded-lg text-xs font-semibold text-gray-500 space-x-4">
-                  <span>Hiring since: July 2024</span>
-                  <span>•</span>
-                  <span>Opportunities posted: 19</span>
-                  <span>•</span>
-                  <span>Candidates hired: 3</span>
-                </div>
-              </div>
-
-              {/* Interactive Form - Confirm Availability */}
-              <div className="space-y-3">
-                <h4 className="text-base font-bold text-gray-900">Confirm your availability</h4>
-                <div className="space-y-2">
-                  {[
-                    'Yes, I am available to join immediately',
-                    'No, I am currently on notice period',
-                    'No, I will have to serve notice period',
-                    'Other (Please specify your availability)'
-                  ].map((option) => (
-                    <label key={option} className="flex items-start space-x-3 text-sm font-medium text-gray-700 cursor-pointer group">
-                      <input 
-                        type="radio" 
-                        name={`availability-${internship.id}`} 
-                        value={option} 
-                        checked={availability === option}
-                        onChange={() => setAvailability(option)}
-                        className="mt-1 h-4 w-4 text-[#00A5EC] border-gray-300 focus:ring-[#00A5EC]" 
-                      />
-                      <span className="group-hover:text-gray-900 transition-colors">{option}</span>
-                    </label>
-                  ))}
-                </div>
-              </div>
-
-              {/* Additional Questions */}
-              <div className="space-y-4 pt-2">
-                <h4 className="text-base font-bold text-gray-900">Additional question(s)</h4>
-                
-                <div className="space-y-2">
-                  <p className="text-sm font-semibold text-gray-700">
-                    Would you be comfortable committing to a full-time 6-months apprenticeship?
-                  </p>
-                  <div className="flex gap-4">
-                    {['Yes', 'No'].map((opt) => (
-                      <label key={opt} className="flex items-center space-x-2 text-sm font-medium text-gray-700 cursor-pointer">
-                        <input 
-                          type="radio" 
-                          name={`commit6Months-${internship.id}`} 
-                          value={opt} 
-                          checked={commit6Months === opt}
-                          onChange={() => setCommit6Months(opt)}
-                          className="h-4 w-4 text-[#00A5EC] border-gray-300 focus:ring-[#00A5EC]" 
-                        />
-                        <span>{opt}</span>
-                      </label>
-                    ))}
-                  </div>
-                </div>
-
-                <div className="space-y-2 pt-2">
-                  <p className="text-sm font-semibold text-gray-700 leading-snug">
-                    Are you comfortable working within the following shift timings based on your availability and eligibility? (Rotational shifts as detailed above)
-                  </p>
-                  <div className="flex gap-4">
-                    {['Yes', 'No'].map((opt) => (
-                      <label key={opt} className="flex items-center space-x-2 text-sm font-medium text-gray-700 cursor-pointer">
-                        <input 
-                          type="radio" 
-                          name={`shiftComfortable-${internship.id}`} 
-                          value={opt} 
-                          checked={shiftComfortable === opt}
-                          onChange={() => setShiftComfortable(opt)}
-                          className="h-4 w-4 text-[#00A5EC] border-gray-300 focus:ring-[#00A5EC]" 
-                        />
-                        <span>{opt}</span>
-                      </label>
-                    ))}
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            {/* Modal Footer Controls */}
-            <div className="px-6 py-4 bg-gray-50 border-t border-gray-100 flex justify-end gap-3 shrink-0">
-              <Button 
-                variant="ghost" 
-                onClick={(e) => {
-                  e.stopPropagation();
-                  setIsDetailOpen(false);
-                }}
-                className="text-sm h-10 px-5 rounded-xl text-gray-600 hover:text-gray-900 hover:bg-gray-200 font-semibold border-none"
-              >
-                Cancel
-              </Button>
-              <Button 
-                onClick={(e) => handleApplyClick(e)}
-                className="text-sm h-10 px-6 rounded-xl bg-[#00A5EC] hover:bg-[#00A5EC]/90 text-white font-bold flex items-center gap-1.5 shadow-sm transition-all"
-              >
-                Apply now
-                <ArrowUpRight className="w-4 h-4" />
-              </Button>
-            </div>
-          </div>
-        </div>,
-        document.body
-      )}
+      <InternshipDetailModal
+        internship={internship}
+        isOpen={isDetailOpen}
+        onClose={() => setIsDetailOpen(false)}
+        onApply={(e) => handleApplyClick(e)}
+      />
     </Card>
   );
 }
