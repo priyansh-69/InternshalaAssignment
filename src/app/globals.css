@@ -18,7 +18,7 @@
     --card-foreground: oklch(0.141 0.005 286);
     --popover: oklch(1 0 0);
     --popover-foreground: oklch(0.141 0.005 286);
-    --primary: oklch(0.61 0.17 240); /* Vibrant Internshala Light Blue (#00A5EC) */
+    --primary: oklch(0.69 0.19 235); /* Vibrant Internshala Light Blue (#00A5EC) */
     --primary-foreground: oklch(1 0 0);
     --secondary: oklch(0.96 0.01 240); /* Soft light blue-gray */
     --secondary-foreground: oklch(0.2 0.02 240);
@@ -29,11 +29,11 @@
     --destructive: oklch(0.577 0.245 27.325);
     --border: oklch(0.92 0.005 240);
     --input: oklch(0.92 0.005 240);
-    --ring: oklch(0.61 0.17 240);
+    --ring: oklch(0.69 0.19 235);
     --radius: 0.75rem;
     --sidebar: oklch(0.99 0.002 240);
     --sidebar-foreground: oklch(0.141 0.005 286);
-    --sidebar-primary: oklch(0.61 0.17 240);
+    --sidebar-primary: oklch(0.69 0.19 235);
     --sidebar-primary-foreground: oklch(1 0 0);
     --sidebar-accent: oklch(0.95 0.02 240);
     --sidebar-accent-foreground: oklch(0.3 0.1 240);

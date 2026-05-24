@@ -359,11 +359,11 @@ export function FilterSidebar() {
               onChange={(e) => setKeywordSearch(e.target.value)}
               onKeyDown={handleKeywordSearchKeyDown}
               placeholder="e.g. Design, Mumbai, Infosys"
-              className="flex-1 h-10 px-3 border border-gray-200 rounded-lg text-sm focus:border-blue-500 focus:ring-1 focus:ring-blue-500 bg-white"
+              className="flex-1 h-10 px-3 border border-gray-200 rounded-lg text-sm focus:border-[#00A5EC] focus:ring-1 focus:ring-[#00A5EC] bg-white"
             />
             <Button
               onClick={handleKeywordSearchSubmit}
-              className="h-10 w-10 p-0 bg-[#00A5EC] hover:bg-blue-600 text-white rounded-lg flex items-center justify-center shadow-sm"
+              className="h-10 w-10 p-0 bg-[#00A5EC] hover:bg-[#00A5EC]/90 text-white rounded-lg flex items-center justify-center shadow-sm"
             >
               <Search className="w-4 h-4" />
             </Button>

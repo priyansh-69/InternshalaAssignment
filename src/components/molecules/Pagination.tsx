@@ -137,7 +137,7 @@ export function Pagination() {
                   onClick={() => handlePageChange(pageNum)}
                   className={`h-8 w-8 p-0 rounded-lg text-sm font-medium ${
                     isActive
-                      ? 'bg-blue-600 hover:bg-blue-700 text-white shadow-sm'
+                      ? 'bg-[#00A5EC] hover:bg-[#00A5EC]/90 text-white shadow-sm'
                       : 'text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-gray-100 hover:bg-gray-50 dark:hover:bg-gray-800'
                   }`}
                 >

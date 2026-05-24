@@ -8,7 +8,7 @@ interface SearchLayoutProps {
 
 export function SearchLayout({ header, sidebar, content }: SearchLayoutProps) {
   return (
-    <div className="min-h-screen bg-gray-50/30 flex flex-col">
+    <div className="min-h-screen bg-[#F0F7FF] flex flex-col">
       {/* Full-width sticky header container */}
       {header}
 

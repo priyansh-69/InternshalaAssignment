@@ -16,8 +16,8 @@ export function EmptyState({
     <div className="flex flex-col items-center justify-center p-8 md:p-16 bg-white dark:bg-gray-900 border border-gray-100 dark:border-gray-800/60 rounded-2xl shadow-sm text-center max-w-xl mx-auto my-4 transition-all duration-300">
       <div className="relative mb-6">
         <div className="absolute inset-0 bg-blue-100 dark:bg-blue-900/30 rounded-full blur-xl opacity-50 scale-125 animate-pulse" />
-        <div className="relative p-5 bg-gradient-to-tr from-blue-50 to-indigo-50 dark:from-blue-950/40 dark:to-indigo-950/40 rounded-full border border-blue-100/50 dark:border-blue-900/30">
-          <SearchX className="w-12 h-12 text-blue-600 dark:text-blue-400" />
+        <div className="relative p-5 bg-gradient-to-tr from-blue-50 to-sky-50 dark:from-blue-950/40 dark:to-sky-950/40 rounded-full border border-blue-100/50 dark:border-blue-900/30">
+          <SearchX className="w-12 h-12 text-[#00A5EC] dark:text-[#00A5EC]" />
         </div>
       </div>
       
@@ -32,7 +32,7 @@ export function EmptyState({
       <div className="pt-6">
         <Button
           onClick={onReset}
-          className="bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 text-white shadow-md hover:shadow-lg transition-all duration-300 font-medium text-sm flex items-center gap-2 px-5 py-2.5 rounded-xl border-none"
+          className="bg-[#00A5EC] hover:bg-[#00A5EC]/90 text-white shadow-md hover:shadow-lg transition-all duration-300 font-medium text-sm flex items-center gap-2 px-5 py-2.5 rounded-xl border-none"
         >
           <RotateCcw className="w-4 h-4" />
           Clear All Filters

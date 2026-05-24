@@ -132,15 +132,15 @@ export function InternshipCard({ internship }: InternshipCardProps) {
       );
     }
 
-    // 10. Default: Premium char-code dynamic gradient avatar
+    // 10. Default: Brand char-code dynamic gradient avatar
     const firstChar = internship.company_name.trim().charAt(0).toUpperCase();
     const code = firstChar.charCodeAt(0) || 65;
 
-    let gradient = 'from-blue-500 to-indigo-500';
+    let gradient = 'from-blue-500 to-sky-500';
     if (code >= 65 && code <= 68) { // A-D
-      gradient = 'from-blue-500 to-indigo-500';
+      gradient = 'from-blue-500 to-sky-500';
     } else if (code >= 69 && code <= 72) { // E-H
-      gradient = 'from-purple-500 to-pink-500';
+      gradient = 'from-sky-500 to-blue-600';
     } else if (code >= 73 && code <= 76) { // I-L
       gradient = 'from-teal-500 to-emerald-500';
     } else if (code >= 77 && code <= 80) { // M-P
@@ -169,7 +169,7 @@ export function InternshipCard({ internship }: InternshipCardProps) {
               {internship.is_active && (
                 <Badge 
                   variant="secondary" 
-                  className="text-[11px] font-bold text-blue-600 bg-blue-50 border border-blue-100/20 px-2.5 py-0.5 rounded-md inline-flex items-center gap-1"
+                  className="text-[11px] font-bold text-[#00A5EC] bg-[#00A5EC]/10 border border-[#00A5EC]/25 px-2.5 py-0.5 rounded-md inline-flex items-center gap-1"
                 >
                   <PlayCircle className="w-3.5 h-3.5" /> Actively hiring
                 </Badge>
@@ -182,7 +182,7 @@ export function InternshipCard({ internship }: InternshipCardProps) {
               )}
             </div>
 
-            <h3 className="text-lg md:text-xl font-bold text-gray-900 group-hover:text-blue-600 transition-colors">
+            <h3 className="text-lg md:text-xl font-bold text-gray-900 group-hover:text-[#00A5EC] transition-colors">
               {internship.title}
             </h3>
             <p className="text-sm font-semibold text-gray-500">
@@ -215,7 +215,7 @@ export function InternshipCard({ internship }: InternshipCardProps) {
         <div className="grid grid-cols-2 md:grid-cols-4 gap-4 bg-gray-50/50 p-4 rounded-xl border border-gray-100/50 text-sm text-gray-600">
           {/* Column 1: Start Date */}
           <div className="flex items-center space-x-2.5">
-            <PlayCircle className="w-4 h-4 text-blue-500/70" />
+            <PlayCircle className="w-4 h-4 text-[#00A5EC]" />
             <div className="flex flex-col">
               <span className="text-[10px] text-gray-400 uppercase tracking-wider font-bold">Start Date</span>
               <span className="font-semibold text-gray-700">{internship.start_date}</span>
@@ -224,7 +224,7 @@ export function InternshipCard({ internship }: InternshipCardProps) {
           
           {/* Column 2: Duration */}
           <div className="flex items-center space-x-2.5">
-            <Calendar className="w-4 h-4 text-emerald-500/70" />
+            <Calendar className="w-4 h-4 text-[#00A5EC]" />
             <div className="flex flex-col">
               <span className="text-[10px] text-gray-400 uppercase tracking-wider font-bold">Duration</span>
               <span className="font-semibold text-gray-700">{internship.duration}</span>
@@ -233,7 +233,7 @@ export function InternshipCard({ internship }: InternshipCardProps) {
           
           {/* Column 3: Stipend */}
           <div className="flex items-center space-x-2.5">
-            <IndianRupee className="w-4 h-4 text-amber-500/70" />
+            <IndianRupee className="w-4 h-4 text-[#00A5EC]" />
             <div className="flex flex-col">
               <span className="text-[10px] text-gray-400 uppercase tracking-wider font-bold">Stipend</span>
               <span className="font-semibold text-gray-700">{internship.stipend.salary}</span>
@@ -242,7 +242,7 @@ export function InternshipCard({ internship }: InternshipCardProps) {
 
           {/* Column 4: Apply By / Urgency Indicator */}
           <div className="flex items-center space-x-2.5">
-            <Clock className="w-4 h-4 text-rose-500/70" />
+            <Clock className="w-4 h-4 text-[#00A5EC]" />
             <div className="flex flex-col">
               <span className="text-[10px] text-gray-400 uppercase tracking-wider font-bold">Apply By</span>
               <span className="font-semibold text-gray-700">
@@ -270,14 +270,7 @@ export function InternshipCard({ internship }: InternshipCardProps) {
               Part time
             </Badge>
           )}
-          {internship.is_premium_internship && (
-            <Badge 
-              variant="outline" 
-              className="bg-indigo-50 text-indigo-700 hover:bg-indigo-50 border-indigo-200 font-semibold rounded-lg px-2.5 py-0.5"
-            >
-              Premium
-            </Badge>
-          )}
+
           {internship.eligible_for_easy_apply && (
             <Badge 
               variant="outline" 
@@ -304,7 +297,7 @@ export function InternshipCard({ internship }: InternshipCardProps) {
             View details
           </Button>
           <Button 
-            className="text-xs h-9 px-4 rounded-xl bg-blue-600 hover:bg-blue-700 text-white font-semibold flex items-center gap-1 shadow-sm transition-all duration-200 hover:shadow"
+            className="text-xs h-9 px-4 rounded-xl bg-[#00A5EC] hover:bg-[#00A5EC]/90 text-white font-semibold flex items-center gap-1 shadow-sm transition-all duration-200 hover:shadow"
           >
             Apply now
             <ArrowUpRight className="w-3.5 h-3.5" />
